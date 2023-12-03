@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 public class RefreshToken {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
@@ -27,6 +28,8 @@ public class RefreshToken {
 
     public RefreshToken update(String newRefreshToken) {
         this.refreshToken = newRefreshToken;
+
         return this;
     }
 }
+

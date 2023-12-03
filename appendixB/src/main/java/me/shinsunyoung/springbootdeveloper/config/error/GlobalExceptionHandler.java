@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @Slf4j
-@ControllerAdvice
+@ControllerAdvice // 모든 컨트롤러에서 발생하는 예외를 잡아서 처리
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    // 지원하지 않은 HTTP method 호출 할 경우 발생
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class) // HttpRequestMethodNotSupportedException 예외를 잡아서 처리
     protected ResponseEntity<ErrorResponse> handle(HttpRequestMethodNotSupportedException e) {
         log.error("HttpRequestMethodNotSupportedException", e);
         return createErrorResponseEntity(ErrorCode.METHOD_NOT_ALLOWED);

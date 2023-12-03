@@ -11,6 +11,7 @@ import java.util.List;
 
 @Controller
 public class ExampleController {
+
     @GetMapping("/thymeleaf/example")
     public String thymeleafExample(Model model) {
         Person examplePerson = new Person();
@@ -24,6 +25,7 @@ public class ExampleController {
 
         return "example";
     }
+
     @Setter
     @Getter
     class Person {
@@ -33,3 +35,4 @@ public class ExampleController {
         private List<String> hobbies;
     }
 }
+

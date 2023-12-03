@@ -50,6 +50,7 @@ public class BlogService {
         return article;
     }
 
+    // 게시글을 작성한 유저인지 확인
     private static void authorizeArticleAuthor(Article article) {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         if (!article.getAuthor().equals(userName)) {

@@ -17,6 +17,7 @@ import java.util.List;
 @Getter
 @Entity
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
@@ -25,11 +26,11 @@ public class User implements UserDetails {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "nickname", unique = true)
-    private String nickname;
-
     @Column(name = "password")
     private String password;
+
+    @Column(name = "nickname", unique = true)
+    private String nickname;
 
     @Builder
     public User(String email, String password, String nickname) {
@@ -37,6 +38,14 @@ public class User implements UserDetails {
         this.password = password;
         this.nickname = nickname;
     }
+
+    public User update(String nickname) {
+        this.nickname = nickname;
+
+        return this;
+    }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -52,6 +61,7 @@ public class User implements UserDetails {
     public String getPassword() {
         return password;
     }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -70,10 +80,5 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public User update(String nickname) {
-        this.nickname = nickname;
-        return this;
     }
 }
