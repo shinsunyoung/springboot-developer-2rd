@@ -66,15 +66,15 @@ class TokenApiControllerTest {
                 .password("test")
                 .build());
 
-        String refreshToekn = JwtFactory.builder()
+        String refreshToken = JwtFactory.builder()
                 .claims(Map.of("id", testUser.getId()))
                 .build()
                 .createToken(jwtProperties);
 
-        refreshTokenRepository.save(new RefreshToken(testUser.getId(), refreshToekn));
+        refreshTokenRepository.save(new RefreshToken(testUser.getId(), refreshToken));
 
         CreateAccessTokenRequest request = new CreateAccessTokenRequest();
-        request.setRefreshToken(refreshToekn);
+        request.setRefreshToken(refreshToken);
         final String requestBody = objectMapper.writeValueAsString(request);
 
         // when
